@@ -113,7 +113,7 @@ export function  cleanRays() {
 }
 
 export   function movMobs() {
-		let xOffset = (5* G.direction) 
+		let xOffset = ( 5* G.direction) 
 		let yOffset = 40
 		let swip = false	
 
@@ -139,7 +139,7 @@ export   function movMobs() {
 				mob.element.classList.replace(mob.name+"_2", mob.name+"_1")
 				mob.v = 1
 			}	
-			if ((( mob.x+40 + xOffset) > 800) || ( (mob.x + (xOffset + 10) ) <= 0 ) ) {
+			if ((( mob.x+40 + xOffset) >= 800) || ( (mob.x + (xOffset) ) <= 0 ) ) {
 				swip = true 
 				
 				break			
@@ -172,8 +172,8 @@ export   function movMobs() {
 				mob.element.classList.replace(mob.name+"_2", mob.name+"_1")
 				mob.v = 1
 			}
-			if ( ( mob.y+40 + yOffset) > 600)  {
-				mob.element.display = "none"
+			if ( ( mob.y+40 + yOffset) >= 600)  {
+				mob.element.remove() 
 				break			
 			} else {
 				mob.y += yOffset 
