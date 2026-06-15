@@ -67,11 +67,7 @@ function SpawenBullet() {
     bullet.style.top = `${shipY}px`
 
 }
-const keysstate = {
-    left : false,
-    right : false , 
 
-}
 
 
 function updateBullets() {
