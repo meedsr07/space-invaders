@@ -35,7 +35,7 @@ export  function shout() {
 
 function destroyShield(ray) {
 		let shield = null 
-		let head = {x: ray.x+10, y: ray.y+20+4  } 
+		let head = {x: ray.x+10, y: ray.y+20  } 
 		
 		for (let sh of G.shields) {
 				if ( Math.abs(sh.x-head.x) <= (6 * 6) &&  Math.abs(sh.y-head.y) <= (6*4)  ) {
@@ -197,7 +197,7 @@ export   function movMobs() {
 				mob.y += yOffset 
 				mob.element.style.transform = `translate(${mob.x}px, ${mob.y}px)`
 				mob.element.classList.remove(mob.col)
-				mob.col = G.layers[Math.round(mob.y/85)]
+				mob.col = G.layers[Math.round(mob.y/85)] || "red"
 				mob.element.classList.add(mob.col)
 				overridShields(mob)
 
