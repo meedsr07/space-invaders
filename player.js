@@ -18,7 +18,7 @@ export function Spawenplayer() {
         element: player,
         x: x,
         y: y,
-        speed: 10
+        speed: 5
     };
 
     player.style.position = "absolute";
@@ -64,8 +64,19 @@ function SpawenBullet() {
     bullet.style.top = `${shipY}px`
 
 }
+const keysstate = {
+    left : false,
+    right : false , 
+
+}
 
 function gameLoop() {
+    if (keysstate.left) {
+        moveLeft()
+    }
+    if (keysstate.right) {
+        moveRight()
+    }
 	updateBullets();
 
 	requestAnimationFrame(gameLoop);
@@ -89,16 +100,27 @@ function updateBullets() {
 
 gameLoop();
 
+
 document.addEventListener("keydown", (event) => {
+    console.log(event.key)
     if (event.key === ' ') {
         SpawenBullet()
     }
     if (event.key === "ArrowLeft") {
-        moveLeft();
+        keysstate.left = true
     }
 
     if (event.key === "ArrowRight") {
-        moveRight();
+        keysstate.right = true
     }
 });
 
+document.addEventListener("keyup" , (event)=> {
+    if (event.key === "ArrowLeft") {
+        keysstate.left = false 
+
+    }
+    if (event.key === "ArrowRight") {
+        keysstate.right = false
+    }
+})
