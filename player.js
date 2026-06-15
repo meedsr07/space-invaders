@@ -55,7 +55,7 @@ function updatePlayer() {
 
 function SpawenBullet() {
     const gamebox = document.getElementById('container')
-    // if (gamePlay.Bullet.length > 0) return
+    if (gamePlay.Bullet.length > 0) return
     const bullet = document.createElement('div')
     bullet.id = 'bullet'
     gamebox.append(bullet)
@@ -93,23 +93,24 @@ function updateBullets() {
 // save the state of the inputs of the player
 
 document.addEventListener("keydown", (event) => {
-    console.log(event.key)
     if (event.key === ' ') {
         SpawenBullet()
     }
     if (event.key === "ArrowLeft") {
         keysstate.left = true
+        keysstate.right = false
     }
 
     if (event.key === "ArrowRight") {
         keysstate.right = true
+        keysstate.left = false
     }
 });
 
 
-document.addEventListener("keyup" , (event)=> {
+document.addEventListener("keyup", (event) => {
     if (event.key === "ArrowLeft") {
-        keysstate.left = false 
+        keysstate.left = false
 
 
     }
@@ -120,10 +121,54 @@ document.addEventListener("keyup" , (event)=> {
 })
 
 
-function gameLoop() {
-    if (keysstate.right && keysstate.left) {
-        moveRight()
+
+
+
+function checkBulletEnemyCollision() {
+
+    for (let i = 0; i < gamePlay.Bullet.length; i++) {
+        let bullet = gamePlay.Bullet[i];
+
+        const bulletRect = bullet.element.getBoundingClientRect();
+
+        for (let r = 0; r < gamePlay.spawnedMobs.length; r++) {
+            let row = gamePlay.spawnedMobs[r];
+
+            for (let m = 0; m < row.length; m++) {
+                let enemy = row[m];
+
+                if (!enemy || !enemy.element) continue;
+
+                const enemyRect = enemy.element.getBoundingClientRect();
+
+                const hit =
+                    bulletRect.left < enemyRect.right &&
+                    bulletRect.right > enemyRect.left &&
+                    bulletRect.top < enemyRect.bottom &&
+                    bulletRect.bottom > enemyRect.top;
+
+                if (hit) {
+
+                    // remove DOM elements
+                    bullet.element.remove();
+                    enemy.element.remove();
+
+                    // remove from arrays
+                    gamePlay.Bullet.splice(i, 1);
+                    row.splice(m, 1);
+
+                    i--;
+                    m--;
+
+                    return
+                }
+            }
+        }
     }
+}
+
+function gameLoop() {
+
     if (keysstate.left) {
         moveLeft()
     }
@@ -132,7 +177,7 @@ function gameLoop() {
     }
 
     updateBullets();
-
+    checkBulletEnemyCollision();
     requestAnimationFrame(gameLoop);
 }
 
