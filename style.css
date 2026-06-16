@@ -99,3 +99,22 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+#score {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    padding: 10px 15px;
+
+    border: 2px solid white;
+    border-radius: 5px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    user-select: none;
+}

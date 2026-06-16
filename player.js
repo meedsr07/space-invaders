@@ -1,6 +1,7 @@
 import { gamePlay } from "./state.js";
 import { keysstate } from "./state.js";
 import { checkBulletEnemyCollision } from "./collision.js";
+import { Score } from "./collision.js";
 // create the player and set the initial position of the player
 function Spawenplayer() {
     const gamebox = document.getElementById('container')
@@ -140,5 +141,6 @@ function gameLoop() {
 }
 
 Spawenplayer()
+Score()
 gameLoop();
 

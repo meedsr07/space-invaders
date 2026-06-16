@@ -24,7 +24,7 @@ export function checkBulletEnemyCollision() {
                     bulletRect.bottom > enemyRect.top;
 
                 if (hit) {
-
+                    updateScore(enemy)
                     // remove DOM elements
                     bullet.element.remove();
                     enemy.element.remove();
@@ -41,4 +41,29 @@ export function checkBulletEnemyCollision() {
             }
         }
     }
+}
+
+
+export function Score() {
+    const Score = document.createElement('div')
+    Score.id = 'score'
+    Score.textContent = 'Score : 0'
+    document.body.append(Score)
+}
+
+function updateScore(enemy) {
+    if (enemy.name === "squid") {
+        gamePlay.currentScore += 25;
+    }
+
+    if (enemy.name === "crab") {
+        gamePlay.currentScore += 15;
+    }
+
+    if (enemy.name === "octpus") {
+        gamePlay.currentScore += 10;
+    }
+
+    const score = document.getElementById('score');
+    score.textContent = `Score : ${gamePlay.currentScore}`;
 }
