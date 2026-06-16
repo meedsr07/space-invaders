@@ -1,6 +1,6 @@
 import { gamePlay } from "./state.js";
 import { keysstate } from "./state.js";
-
+import { checkBulletEnemyCollision } from "./collision.js";
 // create the player and set the initial position of the player
 function Spawenplayer() {
     const gamebox = document.getElementById('container')
@@ -124,48 +124,6 @@ document.addEventListener("keyup", (event) => {
 
 
 
-function checkBulletEnemyCollision() {
-
-    for (let i = 0; i < gamePlay.Bullet.length; i++) {
-        let bullet = gamePlay.Bullet[i];
-
-        const bulletRect = bullet.element.getBoundingClientRect();
-
-        for (let r = 0; r < gamePlay.spawnedMobs.length; r++) {
-            let row = gamePlay.spawnedMobs[r];
-
-            for (let m = 0; m < row.length; m++) {
-                let enemy = row[m];
-
-                if (!enemy || !enemy.element) continue;
-
-                const enemyRect = enemy.element.getBoundingClientRect();
-
-                const hit =
-                    bulletRect.left < enemyRect.right &&
-                    bulletRect.right > enemyRect.left &&
-                    bulletRect.top < enemyRect.bottom &&
-                    bulletRect.bottom > enemyRect.top;
-
-                if (hit) {
-
-                    // remove DOM elements
-                    bullet.element.remove();
-                    enemy.element.remove();
-
-                    // remove from arrays
-                    gamePlay.Bullet.splice(i, 1);
-                    row.splice(m, 1);
-
-                    i--;
-                    m--;
-
-                    return
-                }
-            }
-        }
-    }
-}
 
 function gameLoop() {
 
