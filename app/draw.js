@@ -18,10 +18,10 @@ export const COLS = SHIELD[0].length;
 
 
 
-export  function draw(shield, x, y,   d){
+export  function draw(x, y,   d){
 
 let frags = document.createDocumentFragment()
-	let bricks = [] 
+//	let bricks = [] 
   for(let r=0;r<ROWS;r++){
     for(let c=0;c<COLS;c++){
       if(!SHIELD[r][c] ) continue;
@@ -31,16 +31,15 @@ let frags = document.createDocumentFragment()
 			div.style.backgroundColor = "green"
 			div.style.left = "0px"
 			div.style.right = "0px"
-			div.style.transform = `translate(${x+c * 6}px, ${ y+r * 6}px)`
+			let brickX = x+c * 6 
+			let brickY = y+ r * 6 
+			div.style.transform = `translate(${brickX}px, ${brickY}px)`
 			frags.append(div)
-			if (r === 4 && c === 4 ) {
-				G.player = {x: x+c * 6,  y : y+r * 6}  // mock player for testing
-			}
-			bricks.push({element : div, x: x+c * 6, y: y+r*6 }) 
+			G.bricks.set({brickX, brickY} , div) 
 			
     }
   }
-	G.shields.push({y : y+((ROWS*6)/2) , x : x+((COLS*6)/2), bricks: bricks }) 
+//	G.shields.push({y : y+((ROWS*6)/2) , x : x+((COLS*6)/2), bricks: bricks }) 
 	G.playGround.element.appendChild(frags)
 }
 

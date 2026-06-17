@@ -3,7 +3,7 @@ import { draw, COLS } from "./draw.js"
 import { Mob } from "./mob.js" 
 
 
-export function spawnMobs(container) {
+export function spawnMobs() {
 	//let offset = 2 
 	let initX = G.playGround.width/4 
 	let initY = G.playGround.height / 10	
@@ -22,7 +22,7 @@ export function spawnMobs(container) {
 			let row = []
 			for (let m = 0; m < 11; m++) {
 
-				let mob = new mob(G.mobs[i], initX+(m * (width)), initY+(line * (height)  )) 
+				let mob = new Mob(G.mobs[i], initX+(m * (width)), initY+(line * (height)  )) 
 				row.push(mob)
 				fragment.appendChild(mob.element)
 
@@ -42,14 +42,12 @@ export function spawnMobs(container) {
 
 
 export function spawnShields() {
-	let offset = G.playGround.width /  4 
-	for (let i = 1 ; i <= 4 ; i++ ) {
-			let cv = document.createElement("div")
-			cv.classList.add("shield")
-			cv.style.position = "absolute"
-			cv.style.left = ( (offset-(COLS * 6 )) * i )-  +"px" 
-			cv.style.top = 500+"px"
-			draw(cv, ( (offset -(COLS* 6)) * i ), 500)
+	let slotW = G.playGround.width /  4 
+	let shieldW = COLS * 6  
+	for (let i = 0 ; i < 4 ; i++ ) {
+			let centerX = slotW * i + slotW/2 	
+			let x = centerX - shieldW/2 
+			draw(x, 500)
 
 	} 
 }

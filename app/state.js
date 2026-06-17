@@ -1,15 +1,14 @@
 // TODO tomorrow save state here insated 
 
 export const gamePlay = {
+		playGround: {width: 800, height: 600},
 		player: {},	
-		playGround: {},
 		spawnedMobs: [],
-		playGround: {width: 880, height: 600},
+		bricks: new Map(), 
 		highestSccore: 0,
 		currentScore: 0,
 		direction: 1,
 		speed: 0,
-		shields: [], 
 		rays: [],
 		functionsQueue: [],
 		expQueue: [],

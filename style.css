@@ -26,6 +26,10 @@ body {
 	justify-content: center;
 }
 
+p {
+	color: white;
+}
+
 .brick {
 	height: 6px;
 	width: 6px;
@@ -44,7 +48,7 @@ body {
 
 
 #container {
-	width: 880px;
+	width: 800px;
 	position: relative;
     box-sizing: border-box;
 	height: 600px;

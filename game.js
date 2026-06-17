@@ -127,7 +127,7 @@ export function  cleanRays() {
 		
 }
 
-export   function movMobs() {
+export   function moveMobs() {
 		let xOffset = ( 5* G.direction) 
 		let yOffset = 20
 		let swip = false	
@@ -142,7 +142,7 @@ export   function movMobs() {
 		
 			
 		
-				if (!mob.mov(xOffset, "x", G.playGround)) {
+				if (!mob.move(xOffset, "x", G.playGround.width)) {
 						swip = true 
 						break
 				} 	
@@ -160,7 +160,7 @@ export   function movMobs() {
 			for (let row of G.reversedMobs) {
 			
 				for (let mob of row[0]) {
-					if (!mob.mov(yOffset, "y", G.playGround.height)) {
+					if (!mob.move(yOffset, "y", G.playGround.height)) {
 						alert("game Over")
 					}
 					
