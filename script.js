@@ -1,6 +1,8 @@
-import movMobs from "./game.js"
+import { movMobs,  shout, movRays, cleanRays}  from "./game.js"
 import { gamePlay as G } from "./state.js"
+import draw from "./draw.js"
 
+//import { spawenplayer, moveLeft, moveRight } from "./player.js"
 
 
 
@@ -11,7 +13,6 @@ function createMob(name, x, y) {
 		div.style.top = y+"px"
 		div.style.left = x+"px"
 		div.classList.add(name)
-		console.log(y/85)
 		let col = G.layers[Math.round(y/85)]
 		div.classList.add(col) 
 		
@@ -36,15 +37,16 @@ function startGame() {
 
 	let element = document.createElement("div") 
 	element.id = "container"
-	let fragment = document.createDocumentFragment()	
 
 
 	
 	spawnMobs(element)
 
-
-	element.appendChild(fragment)	
+	G.playGround = element
 	document.body.appendChild(element)
+	spawnShields()
+	console.log(G.bricks)	
+//	spawenplayer()
 }
 
 
@@ -70,7 +72,7 @@ function spawnMobs(container) {
 				fragment.appendChild(mob.element)
 
 			}		
-			G.spawnedMobs.push(row)
+			G.spawnedMobs.push([row, [...row].reverse()])
 
 			line++
 			container.appendChild(fragment) 	
@@ -78,23 +80,75 @@ function spawnMobs(container) {
 		} 
 			
 	}   	
+
+	G.reversedMobs = [...G.spawnedMobs].reverse()
+}
+
+
+function spawnShields() {
+	let offset = 200
+	for (let i = 1 ; i <= 4 ; i++ ) {
+			let cv = document.createElement("div")
+
+			cv.classList.add("shield")
+			cv.style.position = "absolute"
+			cv.style.left = ((offset * i ) - 120 )  +"px" 
+			cv.style.top = 500+"px"
+			draw(cv, (offset * i) -120 , 500)
+
+	} 
 }
 
 
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+ 
+const movInterval = 50
+const fireInterval = 800
+const raysInterval = 1
+let lastTime = 0 
+let  cur = 0
+let fireTimer = 0
+let raysTimer = 0 
 
-async function loop() {
-	let direction = 1 
-	while (true) {
-		await sleep(300)
-		console.log("called")
+ function loop(timeStamp) {
+	let d = timeStamp-lastTime	
+	lastTime = timeStamp
+	cur+= (d)
+	fireTimer += d 
+	raysTimer += d
+	if (raysTimer >= raysInterval) {
+		movRays()
+		raysTimer = 0
+	} 
+	if (cur >= movInterval) {
+		if (fireTimer >= fireInterval) {
+				
+				shout()
+				fireTimer = 0
+		} 		
+	
+		cleanRays() 	
 		movMobs() 
-	}
+		cur = 0
+	} 	
+	requestAnimationFrame(loop)
+
 }
 
 startGame()
 
 
-await loop()
+/*document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+        moveLeft();
+    }
+
+    if (event.key === "ArrowRight") {
+        moveRight();
+    }
+});
+*/
+requestAnimationFrame(loop)
+
+
 

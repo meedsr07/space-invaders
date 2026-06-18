@@ -9,11 +9,11 @@ export function checkBulletEnemyCollision() {
         const bulletRect = bullet.element.getBoundingClientRect();
         // loop  in  enemies in the gamePlay.spawnedMobs array  
         for (let r = 0; r < gamePlay.spawnedMobs.length; r++) {
-            let row = gamePlay.spawnedMobs[r];
+            let row = gamePlay.spawnedMobs[r][0];
             for (let m = 0; m < row.length; m++) {
                 let enemy = row[m];
 
-                // if (!enemy || !enemy.element) continue;
+                if (!enemy || !enemy.element) continue;
 
                 const enemyRect = enemy.element.getBoundingClientRect();
                 // check if the bullet rectangle intersects with the enemy rectangle
@@ -24,19 +24,28 @@ export function checkBulletEnemyCollision() {
                     bulletRect.bottom > enemyRect.top;
 
                 if (hit) {
-                    updateScore(enemy)
-                    // remove DOM elements
+
+                    updateScore(enemy);
+
                     bullet.element.remove();
                     enemy.element.remove();
 
-                    // remove from arrays
                     gamePlay.Bullet.splice(i, 1);
-                    row.splice(m, 1);
+
+                    let mainRow = gamePlay.spawnedMobs[r][0];
+                    let revRow = gamePlay.spawnedMobs[r][1];
+
+                    mainRow.splice(m, 1);
+
+                    let indexInRev = revRow.indexOf(enemy);
+                    if (indexInRev !== -1) {
+                        revRow.splice(indexInRev, 1);
+                    }
 
                     i--;
                     m--;
 
-                    return
+                    return;
                 }
             }
         }

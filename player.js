@@ -62,7 +62,7 @@ function SpawenBullet() {
     gamebox.append(bullet)
     let shipX = gamePlay.player.x + 22
     let shipY = gamePlay.player.y
-    gamePlay.Bullet.push({ element: bullet, x: shipX, y: shipY, speed: 10 })
+    gamePlay.Bullet.push({ element: bullet, x: shipX, y: shipY, speed: 7 })
     bullet.style.position = 'absolute'
     bullet.style.left = `${shipX}px`
     bullet.style.top = `${shipY}px`

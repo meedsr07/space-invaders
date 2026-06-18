@@ -28,9 +28,27 @@ body {
 	justify-content: center;
 }
 
+.brick {
+	height: 6px;
+	width: 6px;
+}
+
+.ray_exp {
+	background-image: url("assets/ray_exp.png") ; 
+	 background-size: contain;
+    image-rendering: pixelated;
+	image-rendering: crisp-edges;
+    background-position: center;
+	width: 20px;
+	height: 20px;
+
+}
+
+
 #container {
 	width: 800px;
 	position: relative;
+    box-sizing: border-box;
 	height: 600px;
 	border: solid;
 	border-width:1px;
@@ -59,15 +77,28 @@ body {
 	background-image: url("assets/octpus_2.png")  
 }
 
+
+#ray {
+	position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+	image-rendering: crisp-edges;
+    background-position: center;
+	width: 20px;
+	height: 20px;
+}
 #alien {
 	position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
+
 	image-rendering: pixelated;
+
 	image-rendering: crisp-edges;
     background-position: center;
-	width: 40px;
-	height: 40px;
+	width: 48px;
+	height: 32px;
 }
 #mob1 {
 	position: absolute;
@@ -75,6 +106,7 @@ body {
     background-repeat: no-repeat;
 	image-rendering: crisp-edges;
 }
+
 
 #playership {
     width: 50px;
@@ -86,6 +118,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+
 
 }
 
@@ -118,3 +151,5 @@ body {
 
     user-select: none;
 }
+
+
