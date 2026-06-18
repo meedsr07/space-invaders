@@ -7,14 +7,13 @@ export class Mob {
 
 		// dom elment 
 		let div = document.createElement("div")	
+	
 		div.classList.add("alien")
 		div.style.top = "0px"
 		div.style.left = "0px"
 		div.style.transform = `translate(${x}px, ${y}px)`
-		div.classList.add(specie.name)
 		
 		div.classList.add(specie.name+"1") 
-		div.style.display = "block"
 		this.specie = specie
 		this.element = div 
 		this.x = x
@@ -22,7 +21,6 @@ export class Mob {
 		this.width = 40
 		this.height = 40 
 		this.alive = true
-		this.image = 1
 	}
 
 
@@ -50,7 +48,7 @@ export class Mob {
 
 
 	kill() {
-			this.element.style.display  = "none" 
+			this.element.remove() 
 			this.alive = false
 			//spawn exp image just replace background image and append to cleaning quene  
 	}

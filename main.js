@@ -36,16 +36,16 @@ function gameLoop(timestamp) {
 		lastShot = start = lastTime = timestamp 
 			
 	}
-	if (timestamp-lastTime >= interval) {
-		moveMobs(step)
-		lastTime = timestamp
-	}
+
 	
 	if (timestamp-lastShot >= shotInterval) {
 		shot()
 		lastShot = timestamp
 	}
-
+	if (timestamp-lastTime >= interval) {
+		moveMobs(step)
+		lastTime = timestamp
+	}
 
 	if (keysstate.bullet) {
 		player.spawenBullet()
@@ -70,7 +70,7 @@ function getSpeed() {
     const ratio = G.aliveMobs / 55  
     
     const interval = 100 + (700 * ratio)  
-    const step = 5 + (20 * (1 - ratio)) 
+    const step = Math.floor(5 + (20 * (1 - ratio))) 
     
     return { interval, step }
 }

@@ -9,7 +9,7 @@ export  function shot() {
 	let closedOne = null 
 	for (let row of rev) {
 		for (let mob of row[0]) {
-			if ((!closedOne && mob.alive ) || (  Math.abs(closedOne.x-G.player.x) > Math.abs(mob.x-G.player.x) && mob.alive   ) )  {
+			if ( mob.alive &&  ( !closedOne || Math.abs(closedOne.x-G.player.x) > Math.abs(mob.x-G.player.x)   ) )  {
 				closedOne = mob
 			} 
 		}
@@ -20,8 +20,8 @@ export  function shot() {
 	ray.element.classList.add("bullet")
 	ray.element.style.position = "absolute"
 	ray.element.classList.add("red")
-	ray.element.style.left = 0 
-	ray.element.style.top = 0
+	ray.element.style.left = "0px" 
+	ray.element.style.top = "0px"
 	ray.x = closedOne.x+20
 	ray.y = closedOne.y+20
 	ray.element.style.transform =  `translate(${ray.x}px, ${ray.y}px)`
@@ -31,7 +31,7 @@ export  function shot() {
 
 function killPlayer(ray) {
 		 const hit = 
-			    ray.x < G.player.x+6 + G.player.width  &&
+			    ray.x < G.player.x+6 + G.player.width-6  &&
    				ray.x + ray.width > G.player.x+6  &&
 			    ray.y < G.player.y +G.player.height &&
 			    ray.y + ray.height > G.player.y;
@@ -107,22 +107,21 @@ function overridShields(mob) {
 
 
 export function  moveRays() {
-	let i = 0 
-	for (let ray of G.rays ) {
+	for (let i = 0; i < G.rays.length; i++ ) {
+			let ray = G.rays[i]
 			if ( ((ray.y+20)+ 4) > 600 ) { 
 			//	destroyRay(ray, "red")
 				G.rays.splice(i, 1)
-				i++
+				i--	
 				ray.element.remove()
 				continue 
 				//return 
 			}
 			if (hitShield(ray) || killPlayer(ray)) {
-					return 
+					continue 
 			} 
 			ray.y += 3
 			ray.element.style.transform =  `translate(${ray.x}px, ${ray.y}px)`	
-			i++
 	} 
 }
 
@@ -154,6 +153,7 @@ export function  cleanRays() {
 }
 
 export   function moveMobs(xOffset) {
+		console.log(xOffset)
 		xOffset *= G.direction
 	//	let xOffset = ( 5* G.direction) 
 		let yOffset = 20
