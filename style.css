@@ -18,9 +18,15 @@
     filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(100%) contrast(110%);
 }*/
 
+* {
+	box-sizing: border-box;
+}
+
 .red {
     filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(7000%) hue-rotate(0deg) brightness(100%) contrast(110%);
 }
+
+
 body {
 	background-color: black;
   	min-height: 100vh;	 
@@ -31,6 +37,8 @@ body {
 
 p {
 	position: absolute;
+
+	display: "none";
 	color: white;
 }
 
@@ -103,7 +111,7 @@ p {
 }
 
 
-#ray {
+.ray {
 	position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
@@ -113,7 +121,7 @@ p {
 	width: 20px;
 	height: 20px;
 }
-#alien {
+.alien {
 	position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
@@ -133,7 +141,7 @@ p {
     background-position: center;
 }
 
-#bullet {
+.bullet {
 	width: 10px;
 	height: 10px; 
 	background-image:  url('assets/bullet_player.png');

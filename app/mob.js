@@ -7,7 +7,7 @@ export class Mob {
 
 		// dom elment 
 		let div = document.createElement("div")	
-		div.id = "alien"
+		div.classList.add("alien")
 		div.style.top = "0px"
 		div.style.left = "0px"
 		div.style.transform = `translate(${x}px, ${y}px)`
@@ -50,7 +50,7 @@ export class Mob {
 
 
 	kill() {
-			this.element.style.display = "none" 
+			this.element.style.display  = "none" 
 			this.alive = false
 			//spawn exp image just replace background image and append to cleaning quene  
 	}

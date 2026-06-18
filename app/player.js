@@ -22,8 +22,10 @@ export function spawnPlayer() {
 
     player.style.position = "absolute";
     player.classList.add("cyan")
-    player.style.left = `${x}px`;
-    player.style.top = `${y}px`;
+    player.style.left = `0px`;
+    player.style.top = `0px`;
+	 G.player.element.style.transform = `translate(${G.player.x}px, ${G.player.y}px)`;
+
 }
 
 export function moveLeft() {
@@ -45,18 +47,16 @@ function updatePlayer() {
         G.player.x = 750;
     }
     // update the position of the player
-    G.player.element.style.left = G.player.x + "px";
+    G.player.element.style.transform = `translate(${G.player.x}px, ${G.player.y}px)`;
 }
-
-
 export function spawenBullet() {
     const gamebox = G.playGround.element  
     if (G.bullet) return
     const bullet = document.createElement('div')
-    bullet.id = 'bullet'
+    bullet.classList.add('bullet')
     gamebox.append(bullet)
-    let shipX = G.player.x + 22
-    let shipY = G.player.y+10
+    let shipX = G.player.x + 25
+	let shipY = G.player.y+10
     G.bullet = ({ element: bullet, x: shipX, y: shipY, speed: 4, height: 10, width: 10 })
     bullet.style.position = 'absolute'
     bullet.style.left = `0px`
@@ -77,7 +77,7 @@ export function updateBullets() {
         if (G.bullet.y < 0) {
             // remove the bullet from the array
 
-			G.bullet.element.style.display = "none"
+			G.bullet.element.remove()
             G.bullet = null
         }
 }

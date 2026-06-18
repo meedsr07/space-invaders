@@ -9,7 +9,7 @@ export  function shot() {
 	let closedOne = null 
 	for (let row of rev) {
 		for (let mob of row[0]) {
-			if ((!closedOne ) || (  Math.abs(closedOne.x-G.player.x) > Math.abs(mob.x-G.player.x)   ) )  {
+			if ((!closedOne && mob.alive ) || (  Math.abs(closedOne.x-G.player.x) > Math.abs(mob.x-G.player.x) && mob.alive   ) )  {
 				closedOne = mob
 			} 
 		}
@@ -17,7 +17,7 @@ export  function shot() {
 	let ray = {height: 10, width:10 } 
 	ray.element = document.createElement("div")
 	//ray.name = "ray_"+rand(1, 3)+"_"
-	ray.element.id = "bullet"
+	ray.element.classList.add("bullet")
 	ray.element.style.position = "absolute"
 	ray.element.classList.add("red")
 	ray.element.style.left = 0 
@@ -31,12 +31,12 @@ export  function shot() {
 
 function killPlayer(ray) {
 		 const hit = 
-			    ray.x < G.player.x + G.player.width  &&
-   				ray.x + ray.width > G.player.x  &&
+			    ray.x < G.player.x+6 + G.player.width  &&
+   				ray.x + ray.width > G.player.x+6  &&
 			    ray.y < G.player.y +G.player.height &&
 			    ray.y + ray.height > G.player.y;
                     if (hit) {
-                    ray.element.remove();// Todo later:
+                    ray.element.style.display = "none";// Todo later:
 					alert("failed")
                     return
                 }
@@ -49,7 +49,7 @@ function hitShield(b) {
             if (G.bricks.has(key)) {
                 G.bricks.get(key).remove();
                 G.bricks.delete(key);
-                b.element.remove();
+                b.element.style.display = "none";
 					G.rays.splice(G.rays.indexOf(b), 1)	
                     return true;
             }
