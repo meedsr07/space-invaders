@@ -47,14 +47,16 @@ p {
 	width: 6px;
 }
 
-.ray_exp {
-	background-image: url("assets/ray_exp.png") ; 
-	 background-size: contain;
-    image-rendering: pixelated;
+.crab_exp, .squid_exp, .octpus_exp {
+	background-image: url("assets/exp.png") ; 
+	position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+	image-rendering: pixelated;
 	image-rendering: crisp-edges;
     background-position: center;
-	width: 20px;
-	height: 20px;
+	width: 40px;
+	height: 40px;
 
 }
 

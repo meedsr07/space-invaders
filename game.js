@@ -139,30 +139,23 @@ function hitBullet(ray, i ) {
 }
 
 function  destroyRay(ray, col) {
-		ray.element.remove()
-		let exp = document.createElement("div")
-		exp.classList.add("ray_exp")
-		exp.style.position = "absolute"
-		exp.style.left = 0
-		exp.style.right = 0
-		exp.style.transform =  `translate(${ray.x}px, ${ray.y+10}px)`	
-		exp.classList.add(col)
-		G.playGround.element.appendChild(exp)
-		G.expQueue.push({element: exp, frames: 4 })
-}
+	}
 
-export function  cleanRays() {
-		let i = 0 
-		let copy = G.expQueue
-		for (let exp of copy)  {
-			if (!exp.frames) {
-				exp.element.style.display = "none"
-				G.expQueue.splice(G.expQueue.indexOf(exp, 1)) 
-			} else {
-				exp.frames--
-			}
+
+export function  cleanExps(delta) {
+	console.log(G.exps)
+	for (let i = G.exps.length-1;  i >= 0    ; i--) {
+
+		let exp = G.exps[i]
+
+		exp.timer -= delta	
+		if (exp.timer <= 0 ) {
+			exp.element.remove()
+			G.exps.splice(i, 1)
+
 		}
-		
+	}	
+				
 }
 
 export   function moveMobs(xOffset) {
@@ -179,8 +172,7 @@ export   function moveMobs(xOffset) {
 		
 			for (let mob of row[index]) {
 		
-				if (!mob.alive) continue 		
-				//  the method return true if it actually didnt hall wall and move nside the method 	
+				if (!mob.alive ) continue 		
 				if (!mob.canMove(xOffset, "x", G.playGround.width)) { 
 						swip = true 
 						break outer 
@@ -199,7 +191,7 @@ export   function moveMobs(xOffset) {
 			
 		
 			for (let mob of row[index]) {
-		
+				
 				if (!swip) { 
 					mob.move(xOffset, "x", G.playGround.width)
 				} else {

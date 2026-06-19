@@ -1,4 +1,4 @@
-
+import {gamePlay as G } from "./state.js"
 
 
 export class Mob {
@@ -47,6 +47,15 @@ export class Mob {
 	kill() {
 			this.element.style.opacity = "0" 
 			this.alive = false
+		let exp = document.createElement("div")
+		exp.classList.add(this.specie.name+"exp")
+		exp.style.position = "absolute"
+		exp.style.left = 0
+		exp.style.right = 0
+		exp.style.transform =  `translate(${this.x}px, ${this.y}px)`	
+		G.playGround.element.appendChild(exp)
+		G.exps.push({element: exp, timer : 100 })
+
 			//spawn exp image just replace background image and append to cleaning quene  
 	}
 	

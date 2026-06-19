@@ -10,7 +10,7 @@ export const gamePlay = {
 		direction: 1,
 		rays: [],
 		shots: 0,
-		expQueue: [],
+		exps: [],
 		mobs : [{name: "squid_", points: 30}, {name: "crab_", points: 20}, {name: "octpus_", points: 10}, {name: "ufo_", points: 150, isUfo : true}]
 }
 

@@ -1,4 +1,4 @@
-import { moveMobs, shot, moveRays}  from "./game.js"
+import { moveMobs, shot, moveRays, cleanExps}  from "./game.js"
 import { gamePlay as G, keysstate } from "./app/state.js"
 import {spawnMobs, spawnShields, spawenUfo, moveUfo } from "./app/scene.js"
 import * as player  from "./app/player.js"
@@ -26,6 +26,7 @@ function startGame() {
 
 
 let moveInterval = 800 
+let lastFrame = 0 
 let ufoInterval  = 100 
 let shots  = 0  
 let ufoTimer = 0 
@@ -37,10 +38,11 @@ let delay = 15000 + Math.random() * 15000
 let start = 0 
 function gameLoop(timestamp) {
 	const { interval, step } = getSpeed()	
+	
 	if (!lastTime) {
-		delayTimer =  lastShot = start = lastTime = ufoTimer = timestamp 	
+		delayTimer =  lastShot = start = lastTime = lastFrame =  ufoTimer = timestamp 	
 	}
-
+	const delta = timestamp-lastFrame
 	
 	if (timestamp-lastShot >= shotInterval) {
 		shot()
@@ -74,11 +76,12 @@ function gameLoop(timestamp) {
     if (keysstate.right) {
         player.moveRight()
     }
+	cleanExps(delta) 
 	moveRays()
     player.updateBullets();
     checkBulletEnemyCollision();
-    
-	 G.score.textContent = (timestamp-start) / 1000
+   	lastFrame = timestamp  
+	G.score.textContent = (timestamp-start) / 1000
 	requestAnimationFrame(gameLoop)
 }
 
