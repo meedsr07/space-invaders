@@ -52,6 +52,7 @@ export class Player {
         for (let bullet of this.bullets) {
             bullet.update();
         }
+         this.bullets = this.bullets.filter(bullet => !bullet.dead);
     }
 
 }

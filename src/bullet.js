@@ -24,6 +24,7 @@ export class Bullet {
         this.render();
 
         if (this.y < 0) {
+            this.dead = true;
             this.destroy();
         }
     }
