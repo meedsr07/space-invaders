@@ -1,5 +1,6 @@
 import { gamePlay as G } from "./src/state.js"
 import { playerExplosion } from "./src/draw.js"
+// import {drawLives} from './src/draw.js'
 
 
 
@@ -43,17 +44,17 @@ function killPlayer(ray) {
 		G.playerHit = true;
 		G.freezeEnemies = true;
 		ray.element.remove()
+		
 		G.player.lives--
+
 		G.player.element.style.display = 'none'
 		const exp = playerExplosion(G.player.x, G.player.y);
 		setTimeout(() => {
-
 			exp.style.display = 'none'
 			G.player.element.style.display = "block";
 			G.playerHit = false;
 			G.freezeEnemies = false;
-
-		}, 2000);
+		}, 1500);
 	}
 
 }
@@ -109,7 +110,7 @@ export function moveRays() {
 		if (hitShield(ray) || killPlayer(ray) || hitBullet(ray, i)) {
 			continue
 		}
-		ray.y += 3
+		ray.y += 4
 		ray.element.style.transform = `translate(${ray.x}px, ${ray.y}px)`
 	}
 }

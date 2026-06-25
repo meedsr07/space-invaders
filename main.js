@@ -6,6 +6,7 @@ import { Bullet } from "./src/bullet.js";
 import { checkBulletEnemyCollision } from "./src/collision.js";
 import { Timer } from "./src/timer.js";
 import "./src/input.js";
+import {drawLives} from './src/draw.js'
 
 
 
@@ -29,7 +30,9 @@ function startGame() {
 	G.playGround.element = document.createElement("div")
 	G.playGround.element.id = "container"
 	G.playGround.element.appendChild(G.score)
-
+	G.livesContainer = document.createElement('div')
+	G.livesContainer.id = "livesContainer"
+	document.body.append(G.livesContainer);
 	spawnMobs()
 
 	document.body.appendChild(G.playGround.element)
@@ -62,7 +65,8 @@ function gameLoop(timestamp) {
 	if (!start) start = timestamp
 	timers.moveMobs.edit(interval)
 	cleanExps(timestamp)
-	moveRays()
+	
+	drawLives()
 	// player.updateBullets();
 	G.player.updateBullets()
 	checkBulletEnemyCollision();
@@ -78,12 +82,15 @@ function gameLoop(timestamp) {
 
 		G.player.moveRight()
 	}
-
+	if (G.player.lives  === 0) {
+		console.log('you lose')
+	}
 
 	if (!G.freezeEnemies && timers.moveMobs.tick(timestamp)) {
 		moveMobs(step)
 	}
 	if (!G.freezeEnemies && timers.shotMob.tick(timestamp)) {
+		console.log("called")
 		shot()
 	}
 	if (!G.freezeEnemies && timers.moveUfo.tick(timestamp)) {
@@ -95,7 +102,9 @@ function gameLoop(timestamp) {
 			G.shots = 0
 		}
 	}
+	moveRays()
 
+	
 
 	G.score.textContent = (timestamp - start) / 1000
 	animationId = requestAnimationFrame(gameLoop)
