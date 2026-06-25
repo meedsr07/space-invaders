@@ -65,20 +65,6 @@
 }
 
 
-body {
-	background-color: black;
-    min-height: 100vh;	 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-p {
-	position: absolute;
-
-	display: "none";
-	color: white;
-}
 
 .brick {
 	height: 6px;
@@ -170,4 +156,69 @@ p {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.ufo_exp {
+	background-image: url("./../img/ufo_exp.png") ; 
+	position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+	image-rendering: pixelated;
+    background-position: center;
+	width: 60px;
+	height: 40px;
+
+}
+
+.crab_exp, .squid_exp, .octpus_exp {
+	background-image: url("./../img/exp.png") ; 
+	position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+	image-rendering: pixelated;
+    background-position: center;
+	width: 40px;
+	height: 40px;
+
+}
+
+.player_exp {
+    position: absolute;
+
+    width: 50px;
+    height: 50px;
+
+    background-image: url("./../img/player_exp.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    image-rendering: pixelated;
+}
+
+#livesContainer {
+    width: 800px;        
+    height: 40px;
+
+    border: 1px solid white;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.life {
+    width: 30px;
+    height: 20px;
+
+    background-image: url("./../img/player.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    image-rendering: pixelated;
+
 }
