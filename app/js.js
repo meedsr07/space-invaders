@@ -3,16 +3,17 @@ import {gamePlay as G } from "./state.js"
 
 function creatListMobs(){
     let container = document.querySelector("#start .list-score")
-let c = document.createDocumentFragment()
-
-for (let i = 0 ; i < G.mobs.length-1 ; i++){
-    let newDiv = document.createElement("div")
-    newDiv.innerHTML = `
-        <div class = "${G.mobs[i].name}1"></div>
-        <h3>=<span>${G.mobs[i].points}</span></h3>`
-    newDiv.classList.add("flexed")
-    newDiv.classList.add(`a${i}`)
-    c.append(newDiv)
+    let c = document.createDocumentFragment()
+    let a = G.mobs.reverse()
+    console.log(a)
+    for (let i = 0 ; i < a-1 ; i++){
+        let newDiv = document.createElement("div")
+        newDiv.innerHTML = `
+        <div class = "${a.name}1"></div>
+        <h3>=<span>${a.points}</span></h3>`
+        newDiv.classList.add("flexed")
+        newDiv.classList.add(`a${i}`)
+        c.append(newDiv)
 }
 container.append(c)
 }
@@ -67,7 +68,7 @@ function creatUi() {
 
         <div id="ui" class="showFlex">
             <div class="table-res">
-                <h2 class="t">500</h2>
+                <h2 class="t" id="score">0</h2>
                 <button id="pause-btn"><i class="fa-solid fa-pause"></i></button>
                 <h2 id="time" class="t">03:56</h2>
             </div>

@@ -8,7 +8,7 @@ export class Player {
         player.id = 'playership'
         G.playGround.element.append(player)
         this.bullets = [];
-
+        this.score = 0
         this.width = 50
         this.height = 25
         this.speed = 6

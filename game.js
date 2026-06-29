@@ -28,7 +28,8 @@ export function shot() {
 	ray.element.style.transform = `translate(${ray.x}px, ${ray.y}px)`
 	G.rays.push(ray)
 	G.playGround.element.appendChild(ray.element)
-}
+}	const { interval, step } = getSpeed()	
+
 
 
 

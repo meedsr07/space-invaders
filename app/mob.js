@@ -55,6 +55,7 @@ export class Mob {
         exp.style.transform =  `translate(${this.x}px, ${this.y}px)`	
         G.playGround.element.appendChild(exp)
         G.exps.push({element: exp, timer : new Timer(100) })
+        return this.specie.points
     }
     
 

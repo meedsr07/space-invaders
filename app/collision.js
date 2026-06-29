@@ -27,7 +27,7 @@ export function checkBulletEnemyCollision() {
 
                     bullet.element.remove();
                     bullet.dead = true
-                    enemy.kill();
+                    G.player.score += enemy.kill();
                     G.aliveMobs--
                     G.bullet = null;
 

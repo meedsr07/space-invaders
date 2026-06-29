@@ -51,6 +51,7 @@ function NewGame() {
 export function startGame() {
 	NewGame()
 	G.time  = document.querySelector("#ui #time")
+	G.score  = document.getElementById("score")
 	G.playGround.element  = document.querySelector("#ui #container")
 	G.livesContainer = document.querySelector("#ui #livesContainer")
 	spawnMobs()
@@ -101,7 +102,7 @@ export function gameLoop(timestamp) {
 	}
 	if (G.aliveMobs == 0){
 		YouWin()
-		return
+		returs  =n
 	}
 
 	if (!G.freezeEnemies && timers.moveMobs.tick(timestamp)) {
@@ -122,6 +123,7 @@ export function gameLoop(timestamp) {
 	}
 	
 	G.time.textContent = ((timestamp-start) / 1000).toFixed(0)
+	G.score.textContent = G.player.score
 	moveRays()
 	animationId = requestAnimationFrame(gameLoop)
 }
