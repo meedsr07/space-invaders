@@ -174,6 +174,7 @@ export function moveMobs(xOffset) {
 
 
 		for (let mob of row[index]) {
+			if (!mob.alive) continue
 			if (!mob.canMove(yOffset, "y", G.playGround.height)) {
 				G.player.lives = 0 
 				return
