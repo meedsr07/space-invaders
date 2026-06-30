@@ -1,6 +1,5 @@
 import { stopLoop, startLoop, startGame } from "../main.js";
 import {gamePlay as G } from "./state.js"
-import {throttle , debounce} from "./Security.js"
 import {creatStart ,creatUi ,creatGameOver ,creatYouWin } from "./genertorHTML.js"
 
 
@@ -8,12 +7,6 @@ let statuss = "start";
 
 const game = document.querySelector("#game");
 
-/* ---------- protected functions ---------- */
-
-const safeStart = debounce(throttle(Start, 500), 100);
-const safePause = debounce(throttle(pause, 200), 100);
-const safeRestart = debounce(throttle(restart, 500), 100);
-const safeExit = debounce(throttle(Exit, 500), 100);
 
 /* ---------- init ---------- */
 OpenOrCancelPause()
@@ -22,39 +15,39 @@ creatStart()
 /* ---------- events ---------- */
 function OpenOrCancelPause(){
     window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        safePause();
+    if (!e.repeat && e.key === "Escape") {
+        pause()
     }
     });
 }
 
 export function bindEvents() {
     document.querySelector("#start-btn")
-    ?.addEventListener("click", safeStart);
+    ?.addEventListener("click", Start);
 
     document.querySelector("#pause-btn")
-        ?.addEventListener("click", safePause);
+        ?.addEventListener("click", pause);
 
     document.querySelector("#continue-btn")
-        ?.addEventListener("click", safePause);
+        ?.addEventListener("click", pause);
 
     document.querySelector("#pause-restart-btn")
-        ?.addEventListener("click", safeRestart);
+        ?.addEventListener("click", restart);
 
     document.querySelector("#pause-exit-btn")
-        ?.addEventListener("click", safeExit);
+        ?.addEventListener("click",  Exit);
 
     document.querySelector("#over-restart-btn")
-        ?.addEventListener("click", safeRestart);
+        ?.addEventListener("click", restart);
 
     document.querySelector("#over-exit-btn")
-        ?.addEventListener("click", safeExit);
+        ?.addEventListener("click",  Exit);
 
     document.querySelector("#win-restart-btn")
-        ?.addEventListener("click", safeRestart);
+        ?.addEventListener("click", restart);
 
     document.querySelector("#win-exit-btn")
-        ?.addEventListener("click", safeExit);
+        ?.addEventListener("click",  Exit);
 }
 /* ---------- status ---------- */
 
