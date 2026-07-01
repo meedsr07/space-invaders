@@ -3,7 +3,6 @@ import { gamePlay as G } from "./state.js";
 
 
 export class Collision {
-	//[ ]n []
 	constructor(invaders, earth) {
 		this.invaders = invaders;		
 		this.earth = earth;

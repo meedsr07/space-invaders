@@ -80,7 +80,6 @@ export function stopLoop() {
 
 export function gameLoop(timestamp) {
 	const interval = getSpeed()	
-	console.log(interval) 
 	timers.moveMobs.edit(interval)
 	cleanExps(timestamp)
 	
@@ -138,14 +137,12 @@ function timer(){
 function getSpeed() {
     const maxAlive = 55;
 
-    const maxInterval = 800; // slowest speed when many mobs alive
-    const minInterval = 25; // fastest speed when 1 mob alive - tune this!
+    const maxInterval = 800; 
+    const minInterval = 25; 
 
-    // normalize 0-1: 1 = maxAlive, 0 = 1 mob left
     let t = (G.aliveMobs - 1) / (maxAlive - 1);
     t = Math.max(0, Math.min(1, t));
 
-    // square it so speed ramps up MUCH faster as mobs get low
     const curved = t * t;
 
     const interval = minInterval + (maxInterval - minInterval) * curved;

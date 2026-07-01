@@ -2,7 +2,6 @@ import { gamePlay as G } from "./app/state.js"
 import { Bullet } from "./app/bullet.js";
 import { Player } from "./app/player.js";
 import { Mob } from "./app/mob.js";
-
 import { playerExplosion } from "./app/draw.js"
 import {GameOver} from "./app/switcherHTML.js"
 import { Entity } from "./app/mob.js"
@@ -26,7 +25,6 @@ export function shot() {
 		return
 	}
  
-	// pull an inactive ray from the pool instead of creating a new DOM element
 	let ray = G.rays.find(r => !r.alive)
 	if (!ray) {
 		return
@@ -112,7 +110,6 @@ export function cleanExps(timestamp) {
 
 export function moveMobs(xOffset) {
 	xOffset *= G.direction
-	//	let xOffset = ( 5* G.direction) 
 	let yOffset = 20
 	let swip = false
 	

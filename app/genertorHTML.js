@@ -94,7 +94,6 @@ function creatListMobs(){
     let container = document.querySelector("#start .list-score")
     let c = document.createDocumentFragment()
     let a = [...G.mobs].reverse()
-    console.log(a)
     for (let i = 0 ; i < a.length ; i++){
         let newDiv = document.createElement("div")
         newDiv.innerHTML = `

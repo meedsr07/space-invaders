@@ -66,7 +66,6 @@ function setStatus(newStatus) {
         return;
     }
 
-    console.log(`Status changed: ${statuss} -> ${newStatus}`);
     statuss = newStatus;
     switchs();
 }
