@@ -15,7 +15,7 @@ creatStart()
 /* ---------- events ---------- */
 function OpenOrCancelPause(){
     window.addEventListener("keydown", (e) => {
-    if (!e.repeat && e.key === "Escape") {
+    if (!e.repeat && e.key === "Escape") { 
         pause()
     }
     });

@@ -14,7 +14,7 @@ const SHIELD = [
 
 const ROWS = SHIELD.length;
 export const COLS = SHIELD[0].length;
-
+          
 
  
 export function draw(x, y, d) {

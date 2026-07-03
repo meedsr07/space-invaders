@@ -8,7 +8,7 @@ export const gamePlay = {
 		playerHit : false,
 		aliveMobs: 55,
 		bricks: [], 
-		direction: 1,
+		direction: 1, 
 		rays: [],
 		shots: 0,
 		exps: [],

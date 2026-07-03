@@ -13,7 +13,7 @@ export function creatStart() {
         </div>
     `;
 
-    
+      
     creatListMobs()
     bindEvents();
 }

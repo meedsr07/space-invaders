@@ -8,7 +8,7 @@ export function spawnMobs() {
     let initX = G.playGround.width/4 
     let initY = G.playGround.height / 10	
     let width = 40 
-    let height = 40
+    let height = 40 
     let gap = 6 
     let line = 0
     let fragment = 	document.createDocumentFragment()

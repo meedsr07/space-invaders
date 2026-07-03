@@ -16,7 +16,7 @@ export class Entity {
 	}
  
 	move(dx, dy) {
-		this.x += dx
+		this.x += dx   
 		this.y += dy
 		this.element.style.transform = `translate(${this.x}px, ${this.y}px)`
 	}

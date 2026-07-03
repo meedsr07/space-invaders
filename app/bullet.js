@@ -9,7 +9,7 @@ export class Bullet {
 
         this.x = x;
         this.y = y;
-        this.speed = speed;
+        this.speed = speed;   
         
         this.width = 2;
         this.height = 8;

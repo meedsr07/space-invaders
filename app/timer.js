@@ -13,7 +13,7 @@ export class Timer {
 			this.lastTime = timestamp 
 			return true
 		}
-		
+		 
 	}
 	edit(interval) {
 		this.interval = interval 

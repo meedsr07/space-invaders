@@ -11,7 +11,7 @@ export class Collision {
 		for (let inv of this.invaders) {
 			if (!inv.alive) continue
 				for (let def of this.earth) {
-
+    
 					if (!def.alive) continue
 						if (overlap(def, inv)) {
 							handler(def, inv);

@@ -28,7 +28,7 @@
 }
 
 @keyframes moveStars{
-    from{
+    from{ 
         transform:translateY(-25%);
     }
 

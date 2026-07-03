@@ -14,7 +14,7 @@ document.addEventListener("keydown", (event) => {
         keysstate.left = false
     }
 });
-
+ 
 
 document.addEventListener("keyup", (event) => {
     if (event.key === "ArrowLeft") {

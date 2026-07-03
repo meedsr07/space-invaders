@@ -19,7 +19,7 @@ export class Player {
 
         player.style.position = "absolute";
         player.classList.add("cyan")
-        this.bullet = new Bullet(this.x - 2 + this.width / 2, this.y)
+        this.bullet = new Bullet(this.x - 2 + this.width / 2, this.y )
         player.style.transform = `translate(${this.x}px, ${this.y}px)`
         this.alive = true
     }

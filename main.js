@@ -147,5 +147,5 @@ function getSpeed() {
 
     const interval = minInterval + (maxInterval - minInterval) * curved;
 
-    return interval;
+    return interval
 }

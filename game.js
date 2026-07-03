@@ -34,6 +34,7 @@ export function shot() {
 	ray.x = closedOne.x + 20
 	ray.y = closedOne.y + 20
 	ray.element.style.transform = `translate(${ray.x}px, ${ray.y}px)`
+	
 }
 
 
